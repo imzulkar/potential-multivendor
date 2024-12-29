@@ -1,10 +1,14 @@
 from rest_framework import serializers
 from checkout_management.models import Order, OrderItem,OrderShipping
 from product_management.models import Product
+
+
 class ShippingAddressSerializer(serializers.ModelSerializer):
     class Meta:
         model = OrderShipping
         fields = "__all__"
+
+
 class OrderItemSerializer(serializers.ModelSerializer):
     product_name = serializers.ReadOnlyField(source="product.name")
 
@@ -14,7 +18,7 @@ class OrderItemSerializer(serializers.ModelSerializer):
 
 class OrderSerializer(serializers.ModelSerializer):
     items = OrderItemSerializer(many=True, read_only=True)
-    shipping =ShippingAddressSerializer(read_only=True)
+    # shipping =ShippingAddressSerializer(read_only=True)
 
     class Meta:
         model = Order

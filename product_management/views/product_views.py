@@ -9,14 +9,18 @@ from utils.permissions import  IsVendorOrAdminOrReadOnly
 
 
 class ProductView(viewsets.ModelViewSet):
-    queryset = Product.objects.all().select_related("category", "subcategory__category", "vendor__user")
+    # queryset = Product.objects.all().select_related("category", "subcategory__category", "vendor__user")
     serializer_class =ProductSerializer
 
     permission_classes = [IsVendorOrAdminOrReadOnly]
     filterset_class = ProductFilter
     filterset_fields = ["vendor", "category", "subcategory", "name"]
     search_fields = ["vendor", "category", "subcategory", "name","vendor__business_name", "category__name", "subcategory__name"]
-    # /products/?min_price=100&max_price=500
+
+    def get_queryset(self):
+        if req_user := self.request.user.role == "VENDOR":
+            return Product.objects.filter(vendor=req_user.vendor_information).select_related("category", "subcategory__category", "vendor__user")
+        return Product.objects.all().select_related("category", "subcategory__category", "vendor__user")
     def perform_create(self, serializer):
         if self.request.user.is_superuser:
             serializer.save()

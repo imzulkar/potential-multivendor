@@ -15,6 +15,7 @@ urlpatterns = [
     path("api/product/", include("product_management.urls")),
     path("api/cart/", include("cart_management.urls")),
     path("api/checkout/", include("checkout_management.urls")),
+    path("api/vendor/", include("vendors.urls")),
 ]
 
 media_url = [
