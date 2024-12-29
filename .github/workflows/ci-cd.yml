@@ -49,7 +49,7 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_KEY }}
           script: |
-            cd /var/dev/vadmultivendor
+            cd /var/dev/multivendor
             docker compose pull 
             docker compose up -d --build --force-recreate
             docker system prune -f
