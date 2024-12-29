@@ -19,7 +19,8 @@ class ProductView(viewsets.ModelViewSet):
 
     def get_queryset(self):
         if req_user := self.request.user.role == "VENDOR":
-            return Product.objects.filter(vendor=req_user.vendor_information).select_related("category", "subcategory__category", "vendor__user")
+            vendor_user = self.request.user.vendor_information
+            return Product.objects.filter(vendor=vendor_user).select_related("category", "subcategory__category", "vendor__user")
         return Product.objects.all().select_related("category", "subcategory__category", "vendor__user")
     def perform_create(self, serializer):
         if self.request.user.is_superuser:
