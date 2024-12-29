@@ -29,7 +29,6 @@ class CartItemViewSet(viewsets.ModelViewSet):
         data = request.data
         product_id = data.get("product")
         quantity = data.get("quantity", 1)
-        print(quantity)
 
         try:
             product = Product.objects.get(id=product_id)
@@ -45,7 +44,7 @@ class CartItemViewSet(viewsets.ModelViewSet):
 
         cart, _ = Cart.objects.get_or_create(user=request.user)
 
-        cart_item, created = CartItem.objects.get_or_create(cart=cart, product=product)
+        cart_item, created = CartItem.objects.get_or_create(cart=cart, product=product, quantity=int(quantity))
         if not created:
             cart_item.quantity += int(quantity)
             if cart_item.quantity > product.stock_quantity:
