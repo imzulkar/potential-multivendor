@@ -1,6 +1,7 @@
 # Potential Inc
 
-## Django Boilerplate
+## Multivendor
+## live Link: http://82.112.227.13:8008/
 
 ---
 

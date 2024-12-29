@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt",
     "rest_framework",
     'drf_spectacular',
+    "daphne"
     # installed app
     "authentications",
     "product_management",
@@ -80,7 +81,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "core.wsgi.application"
+# WSGI_APPLICATION = "core.wsgi.application"
+WSGI_APPLICATION = "core.asgi.application"
 
 AUTH_USER_MODEL = "authentications.User"
 # Database
