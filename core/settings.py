@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     "product_management",
     "cart_management",
     "checkout_management",
+    "vendors",
+    "admin_dashboard",
 ]
 # Application definition
 

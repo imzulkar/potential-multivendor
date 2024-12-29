@@ -118,12 +118,19 @@ class VendorInformation(BaseModel):
     Vendor Information Model
     """
 
+    VENDOR_STATUS = (
+        ("ACTIVE", "Active"),
+        ("DEACTIVATE", "Deactivate"),
+        ("REQUESTED", "Requested"),
+    )
+
     user = models.OneToOneField(
         "User",
         on_delete=models.CASCADE,
         related_name="vendor_information",
         verbose_name="User",
     )
+    status = models.CharField(choices=VENDOR_STATUS, max_length=20, default="REQUESTED")
     business_name = models.CharField(
         max_length=255, null=False, blank=False, verbose_name="Business Name"
     )
@@ -146,6 +153,12 @@ class VendorInformation(BaseModel):
             )
         ],
     )
+
+    def save(self, *args, **kwargs):
+        # Sync Vendor status with User's active status
+        self.user.is_active = self.status == "ACTIVE"
+        self.user.save()
+        super(VendorInformation, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.business_name

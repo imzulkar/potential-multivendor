@@ -79,6 +79,7 @@ class NewUserSerializer(serializers.ModelSerializer):
         user.set_password(validated_data["password1"])
         user.save()
         self.update_vendor_information(user, validated_data)
+
         return user
 
     def update_vendor_information(self,user, validated_data):
@@ -86,5 +87,8 @@ class NewUserSerializer(serializers.ModelSerializer):
         business_email = validated_data.get("business_email")
         vendor_address = validated_data.get("vendor_address")
 
-        vendor = VendorInformation.objects.create(user=user, business_name=business_name,business_email=business_email, address=vendor_address)
+        vendor = VendorInformation.objects.create(user=user, business_name=business_name,business_email=business_email, address=vendor_address, approval_request=True)
+        user.role = "VENDOR"
+        user.is_active = False
+        user.save()
         return vendor
