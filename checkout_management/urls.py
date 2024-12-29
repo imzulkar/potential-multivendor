@@ -9,5 +9,5 @@ router.register("orders", OrderView, basename="order")
 
 urlpatterns = [
 
-    path("/",OrderView.as_view({"post":"checkout"}) )
+    path("",OrderView.as_view({"post":"checkout"}) )
               ]+router.urls

@@ -22,6 +22,10 @@ class OrderView(viewsets.ModelViewSet):
 
     def get_queryset(self):
         # Users can only view their own orders
+        if self.request.user.is_superuser:
+            return Order.objects.all()
+        if self.request.user.role== "VENDOR":
+            Order.objects.filter(items__product__vendor= self.request.user.vendor_information)
         return Order.objects.filter(user=self.request.user)
 
     def checkout(self, request, *args, **kwargs):
