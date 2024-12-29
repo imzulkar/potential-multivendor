@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from proudct_management.models import Product
+from product_management.models import Product
 
 
 class ProductSerializer(serializers.ModelSerializer):

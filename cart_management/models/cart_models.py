@@ -1,14 +1,14 @@
 from django.db import models
 
 from authentications.models import User
-from proudct_management.models import Product
+from core.models import BaseModel
+from product_management.models import Product
 
 
-# Create your models here.
-class Cart(models.Model):
+class Cart(BaseModel):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='cart')
 
-class CartItem(models.Model):
+class CartItem(BaseModel):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name='items')
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)

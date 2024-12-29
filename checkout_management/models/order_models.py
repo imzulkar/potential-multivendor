@@ -2,7 +2,7 @@ from django.db import models
 
 from authentications.models import User
 from core.models import BaseModel
-from proudct_management.models import Product
+from product_management.models import Product
 
 
 # Create your models here.

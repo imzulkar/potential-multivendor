@@ -1,7 +1,7 @@
 from rest_framework import viewsets, status,response
 
-from proudct_management.models import Category, Subcategory
-from proudct_management.serializers import CategorySerializer, SubCategorySerializer
+from product_management.models import Category, Subcategory
+from product_management.serializers import CategorySerializer, SubCategorySerializer
 
 class CategoryView(viewsets.ModelViewSet):
     serializer_class =CategorySerializer

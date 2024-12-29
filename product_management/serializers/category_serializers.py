@@ -1,4 +1,4 @@
-from proudct_management.models import Category, Subcategory
+from product_management.models import Category, Subcategory
 from rest_framework import serializers
 
 class CategorySerializer(serializers.ModelSerializer):

@@ -1,8 +1,8 @@
 from rest_framework import viewsets, status, permissions
 
-from proudct_management.helper.product_filter import ProductFilter
-from proudct_management.models import  Product, Category, Subcategory
-from proudct_management.serializers import  ProductSerializer
+from product_management.helper.product_filter import ProductFilter
+from product_management.models import  Product, Category, Subcategory
+from product_management.serializers import  ProductSerializer
 from utils.permissions import  IsVendorOrAdminOrReadOnly
 
 

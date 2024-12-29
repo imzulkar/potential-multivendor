@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'drf_spectacular',
     # installed app
     "authentications",
-    "proudct_management",
+    "product_management",
     "cart_management",
     "checkout_management",
 ]

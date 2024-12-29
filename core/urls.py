@@ -12,7 +12,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
 
     path("api/auth/", include("authentications.urls")),
-    path("api/product/", include("proudct_management.urls")),
+    path("api/product/", include("product_management.urls")),
     path("api/cart/", include("cart_management.urls")),
     path("api/checkout/", include("checkout_management.urls")),
 ]
