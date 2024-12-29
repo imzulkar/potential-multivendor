@@ -10,4 +10,4 @@ python manage.py init
 
 # Start server
 echo "Starting server"
-daphne -b 0.0.0.0 -p 8000 core.asgi:application
+python manage.py runserver 0.0.0.0:8000
