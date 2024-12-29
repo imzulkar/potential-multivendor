@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ["*"]
 
 
 INSTALLED_APPS = [
+    "daphne",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -41,7 +42,6 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt",
     "rest_framework",
     'drf_spectacular',
-    "daphne"
     # installed app
     "authentications",
     "product_management",
@@ -82,7 +82,7 @@ TEMPLATES = [
 ]
 
 # WSGI_APPLICATION = "core.wsgi.application"
-WSGI_APPLICATION = "core.asgi.application"
+ASGI_APPLICATION = "core.asgi.application"
 
 AUTH_USER_MODEL = "authentications.User"
 # Database
