@@ -2,6 +2,12 @@ from django.urls import path
 
 from rest_framework.routers import DefaultRouter
 
-router = DefaultRouter()
+from checkout_management.views.checkout_views import OrderView
 
-urlpatterns = []+router.urls
+router = DefaultRouter()
+router.register("orders", OrderView, basename="order")
+
+urlpatterns = [
+
+    path("/",OrderView.as_view({"post":"checkout"}) )
+              ]+router.urls
