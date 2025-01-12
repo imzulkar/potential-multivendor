@@ -1,5 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM python:3.10-bullseye
+FROM --platform=linux/arm64 python:3.12-alpine
 
 EXPOSE 8000
 # Set environment variables for Python
