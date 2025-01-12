@@ -11,10 +11,8 @@ WORKDIR /app
 
 # Copy the current directory contents into the container at /code
 COPY . /app
-
-RUN pip install uv \
-    && uv pip install twisted[tls,http2] --system \
-    && uv pip install -r requirements.txt --system
+RUN pip install twisted[tls,http2] --system
+RUN pip install -r requirements.txt --system
 
 
 RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
