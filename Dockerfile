@@ -1,5 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM --platform=linux/arm64 python:3.12-alpine
+FROM python:3.12-alpine
 
 EXPOSE 8000
 # Set environment variables for Python
@@ -11,8 +11,22 @@ WORKDIR /app
 
 # Copy the current directory contents into the container at /code
 COPY . /app
-# RUN pip install twisted[tls,http2] --system
-RUN pip install -r requirements.txt --system
+
+RUN apk add --no-cache \
+    gcc \
+    musl-dev \
+    libffi-dev \
+    openssl-dev \
+    python3-dev \
+    make \
+    && pip install --no-cache-dir twisted[tls,http2] \
+    && pip install --no-cache-dir -r requirements.txt
+# RUN pip install uv
+
+# RUN uv pip install twisted[tls,http2] --system
+
+# # Install dependencies
+# RUN uv pip install -r requirements.txt --system # --no-cache-dir
 
 
 RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
