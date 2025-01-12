@@ -12,21 +12,12 @@ WORKDIR /app
 # Copy the current directory contents into the container at /code
 COPY . /app
 
-RUN apk add --no-cache \
-    gcc \
-    musl-dev \
-    libffi-dev \
-    openssl-dev \
-    python3-dev \
-    make \
-    && pip install --no-cache-dir twisted[tls,http2] \
-    && pip install --no-cache-dir -r requirements.txt
-# RUN pip install uv
+RUN pip install uv
 
-# RUN uv pip install twisted[tls,http2] --system
+RUN uv pip install twisted[tls,http2] --system
 
-# # Install dependencies
-# RUN uv pip install -r requirements.txt --system # --no-cache-dir
+# Install dependencies
+RUN uv pip install -r requirements.txt --system # --no-cache-dir
 
 
 RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
